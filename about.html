@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Bestie</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff0f5;
+      overflow-x: hidden;
+      padding: 0 15px 40px;
+      box-sizing: border-box;
+    }
+
+    .popup, .final-popup {
+      position: fixed;
+      background: white;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      text-align: center;
+      z-index: 10;
+      max-width: 90%;
+      width: 350px;
+    }
+
+    .popup button, .final-popup button, #doneButton {
+      background-color: #ffc0cb;
+      border: none;
+      padding: 12px 30px;
+      margin-top: 25px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+      display: inline-block;
+    }
+
+    .letter {
+      display: none;
+      max-width: 90%;
+      margin: 60px auto 0;
+      padding: 25px 20px;
+      background: #fff;
+      border-radius: 12px;
+      color: #d6336c;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      box-shadow: 0 4px 12px rgba(214, 51, 108, 0.25);
+    }
+
+    /* Center the done button */
+    #doneButton {
+      display: block;
+      margin: 30px auto 0;
+    }
+
+    /* Hearts container */
+    .hearts-container {
+      display: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 30px;
+      gap: 15px;
+    }
+
+    .heart {
+      width: 40px;
+      height: 40px;
+      background-color: #ffccd5;
+      clip-path: polygon(50% 0%, 61% 8%, 70% 20%, 75% 35%, 72% 50%, 60% 65%, 50% 75%, 40% 65%, 28% 50%, 25% 35%, 30% 20%, 39% 8%);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .heart.clicked {
+      background-color: red;
+    }
+
+    @media screen and (max-width: 600px) {
+      .letter {
+        font-size: 0.9rem;
+        padding: 20px 15px;
+      }
+
+      .heart {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="popup" id="promisePopup">
+  <h2>Do you promise not to cry?</h2>
+  <button onclick="showLetter()">I promise</button>
+</div>
+
+<div class="letter" id="letter">
+  <h3>Dear Sinokuhle Mercy Sinokie my groot kop Stacy Malinga ❤️</h3>
+  <p>Heyyy! Before I begin I just want to say I am superrrr grateful to have you in my life... like not the normal grateful... like the "God blessed me with the best best friend ever" typa grateful... soooo</p>
+  
+  <p>I don’t even know where to begin because there’s so much I want to say and words hardly feel enough but I’ll try anyway, because you deserve to know just how much you mean to me.</p>
+  
+  <p>Thank you. Thank you for being YOU, for being my constant support structure when these humans are WEIRD, for the EVERYday advice, for sticking around through everything, for being there through the WORST times in my life — the highs, the messiness, the chaos, and even the silent moments (I’m not saying we've had messy times and etc... ugh, you get what I mean).</p>
+  
+  <p>I can’t even count the number of times you’ve picked me up when I was at my lowest, made me laugh when all I wanted to do was cry, and reminded me of who I am when I started to forget (literally all da time). You’ve never judged me, you’ve never made me feel like I had to be anything other than myself — and I really admire you for that.</p>
+  
+  <p>People like you don’t come around often, and I honestly don’t know what I did to deserve a best friend like you ☹️. You’re the type of person who makes people feel safe, loved, and important. And I hope you know how special that is, and how special you are to me ❤️</p>
+  
+  <p>We’ve created so many memories together and to create MANY more — from the inside jokes only we understand to the random deep talks at 2 a.m. You’ve become such a huge part of my life that I can’t imagine going through this world without you by my side ❤️</p>
+  
+  <p>(I’m almost done 😭) Even when we don’t talk every single day, I know our bond is unbreakable. You are incredibly beautiful (inside and out), smart, funny, kind, loyal, and full of light, and you have no idea how much I admire your strength, your heart, and your soul.</p>
+  
+  <p>So I just want you to know — happy girlfriends (wife) day, and I’m always here. No matter what, no matter where life takes us or how much time passes, I’ve always got you! Always!</p>
+  
+  <p>You’re not just my best friend; you’re family. And I love you more than words could ever express ❤️</p>
+  
+  <p>(Can we also admire that I’m very funny 😛)</p>
+  
+  <p>Forever and always,<br/>Lungile 👅</p>
+
+  <button id="doneButton" onclick="showFinalPopup()">Done</button>
+</div>
+
+<div class="final-popup" id="finalPopup" style="display: none;">
+  <h3>Please click all the hearts for me 💖</h3>
+  <p>We're almost there!</p>
+  <button onclick="startHeartClick()">OK!</button>
+</div>
+
+<div class="hearts-container" id="heartsClickContainer" aria-label="Click all hearts">
+  <!-- Hearts added via JS -->
+</div>
+
+<script>
+  function showLetter() {
+    document.getElementById("promisePopup").style.display = "none";
+    document.getElementById("letter").style.display = "block";
+    document.getElementById("doneButton").focus();
+  }
+
+  function showFinalPopup() {
+    document.getElementById("finalPopup").style.display = "block";
+    document.getElementById("doneButton").disabled = true;
+  }
+
+  function startHeartClick() {
+    document.getElementById("finalPopup").style.display = "none";
+    const heartContainer = document.getElementById("heartsClickContainer");
+    heartContainer.style.display = "flex";
+
+    heartContainer.innerHTML = "";
+    for (let i = 0; i < 5; i++) {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.setAttribute('tabindex', '0');
+      heart.setAttribute('role', 'button');
+      heart.setAttribute('aria-label', 'Heart');
+      heart.addEventListener("click", () => {
+        heart.classList.add("clicked");
+        checkAllClicked();
+      });
+      heart.addEventListener("keypress", (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          heart.click();
+        }
+      });
+      heartContainer.appendChild(heart);
+    }
+    heartContainer.querySelector('div').focus();
+  }
+
+  function checkAllClicked() {
+    const hearts = document.querySelectorAll(".heart");
+    const allClicked = Array.from(hearts).every(h => h.classList.contains("clicked"));
+    if (allClicked) {
+      setTimeout(() => {
+        window.location.href = "surprise.html";
+      }, 1000);
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Girlfriend's Day</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #ffe6f0, #ffcce0);
+      overflow-x: hidden;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 3em;
+      font-family: 'Pacifico', cursive;
+      color: #ff69b4;
+      white-space: nowrap;
+      border-right: 2px solid;
+      width: 100%;
+      overflow: hidden;
+      animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
+      max-width: 90vw;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: #ff69b4; }
+    }
+
+    h2 {
+      font-size: 2em;
+      color: #e60073;
+      margin-top: 10px;
+    }
+
+    .heart-collage {
+      background: pink;
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 20px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      max-width: 1000px;
+      justify-content: center;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .heart-collage img {
+      width: 100%;
+      max-width: 140px; /* enlarged */
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .heart-collage img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #555;
+    }
+
+    .hearts {
+      position: fixed;
+      bottom: -20px;
+      width: 100%;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: 0;
+      font-size: 20px;
+      color: red;
+      animation: floatUp 10s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100vh); opacity: 0; }
+    }
+
+    .confetti {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9;
+    }
+
+    .confetti span {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: red;
+      animation: fall 4s linear infinite;
+      opacity: 0.7;
+      border-radius: 2px;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      h1 { font-size: 2em; }
+      h2 { font-size: 1.5em; }
+      .heart-collage {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .heart-collage img {
+        max-width: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Happy Girlfriend's (Wife) Day!</h1>
+    <h2>I LOVE YOU!</h2>
+
+    <div class="heart-collage">
+      <img src="img1.jpg" alt="Image 1" />
+      <img src="img2.jpg" alt="Image 2" />
+      <img src="img3.jpg" alt="Image 3" />
+      <img src="img4.jpg" alt="Image 4" />
+      <img src="img5.jpg" alt="Image 5" />
+      <img src="img16.jpg" alt="Image 6" />
+      <img src="img7.jpg" alt="Image 7" />
+      <img src="im8.jpg" alt="Image 8" />
+      <img src="img9.jpg" alt="Image 9" />
+      <img src="img15.jpg" alt="Image 10" />
+      <img src="img11.jpg" alt="Image 11" />
+      <img src="img12.jpg" alt="Image 12" />
+      <img src="img13.jpg" alt="Image 13" />
+      <img src="img14.jpg" alt="Image 14" />
+      <img src="img10.jpg" alt="Image 15" />
+      <img src="img3.jpg" alt="Image 16" />
+    </div>
+
+    <footer>Site created by Mbali Mahlangu</footer>
+  </div>
+
+  <div class="confetti"></div>
+  <div class="hearts"></div>
+
+  <script>
+    const heartsContainer = document.querySelector('.hearts');
+    const confettiContainer = document.querySelector('.confetti');
+
+    // Create floating hearts
+    for (let i = 0; i < 20; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      heart.innerHTML = '❤️';
+      heartsContainer.appendChild(heart);
+    }
+
+    // Create falling confetti
+    for (let i = 0; i < 50; i++) {
+      const confetti = document.createElement('span');
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.top = Math.random() * -100 + 'px';
+      confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+      confetti.style.animationDelay = `${Math.random() * 3}s`;
+      confettiContainer.appendChild(confetti);
+    }
+  </script>
+</body>
+</html>
